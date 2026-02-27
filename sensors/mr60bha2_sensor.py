@@ -226,10 +226,14 @@ class MR60BHA2Sensor(RadarSensor):
         elif cmd == CMD_PRESENCE:
             if len(payload) >= 1:
                 self.is_present = payload[0] == 1
+                if not self.is_present:
+                    self.fall_detected = False
 
         elif cmd == CMD_MOVEMENT:
             if len(payload) >= 1:
                 self.movement_status = payload[0]
+                if self.movement_status in (1, 2):
+                    self.fall_detected = False
 
         elif cmd == CMD_BODY_ENERGY:
             if len(payload) >= 4:
