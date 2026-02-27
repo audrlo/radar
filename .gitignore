@@ -1,0 +1,4 @@
+__pycache__/
+*.pyc
+health_data.db
+.claude/
